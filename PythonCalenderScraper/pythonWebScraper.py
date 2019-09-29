@@ -27,7 +27,7 @@ def main():
 
 
 #So here the problem, you need to be able to parse through the different strings of the event names and event dates without those two quantities intersecting,
-#Also you need to be able to determine which buildings(s) the events are placed in, if there are conflucts, how they are written ect, you might even need to start
+#Also you need to be able to determine which building(s) the events are placed in, if there are conflucts, how they are written ect, you might even need to start
 #doing sub depths within the web pages for each event to get more information and that would require getting the event links
 
 
