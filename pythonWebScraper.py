@@ -1,5 +1,6 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.keys import Keys
 import os
 import time
@@ -9,14 +10,15 @@ import datetime
 def main():
 
     cal=Calendar()
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
+
+    options = Options()
+    # options.add_argument("--headless")
 
     # https://sites.google.com/a/chromium.org/chromedriver/download
     # put driver executable file in the script directory
-    chrome_driver = os.path.join(os.getcwd(), "chromedriver")
-
-    driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
+    driver = os.path.join(os.getcwd(), "geckodriver")
+    service = Service(executable_path=driver)
+    driver = webdriver.Firefox(options=options, service=service)
 
     driver.get("https://utdallas.edu/calendar")
 # Find the javascript button that displays this months events and clicks it
@@ -49,7 +51,7 @@ def main():
     # Creates a list of events from the web page, as long as they have the
     #   event title class, which is required for a valid entry anyway
     unparsedEvents=driver.find_elements_by_class_name("eventTitle")
-    subLink = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
+    subLink = webdriver.Firefox(options=options, service=service)
 
     # Go through each event entry, gather data and determine whether they are valid entries
     #   If they are, print their information and add them to the cal (Calendar()) object
